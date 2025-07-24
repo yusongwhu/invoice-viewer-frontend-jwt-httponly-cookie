@@ -5,11 +5,11 @@ import './App.css'
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
-import InvoiceList from './components/InvoiceList'
+import InvoiceList from './features/invoices/InvoiceList'
 import Dashboard from './components/Dashboard'
 import MainLayout from './layouts/MainLayout'
-import Book from './components/Book'
-import DepartmentTable from './components/DepartmentTable';
+import Book from './features/books/Book'
+import DepartmentTable from './features/departments/DepartmentTable';
 import EmployeeList from './features/employees/EmployeeList';
 
 function App() {

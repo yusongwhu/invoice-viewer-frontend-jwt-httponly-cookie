@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import API from '../../api';
 import useDepartments from '../departments/useDepartments';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const EmployeeForm = ({ selected, onSaved }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -28,25 +30,27 @@ const EmployeeForm = ({ selected, onSaved }) => {
 
     if (selected?.id) {
       await API.put(`/Employees/${selected.id}`, payload);
-      toast.success('Employee updated successfully!');
+      toast.success(t('employee.updated'));
     } else {
       await API.post('/Employees', payload);
-      toast.success('Employee added successfully!');
+      toast.success(t('employee.created'));
     }
     onSaved(null);
     reset();
   };
 
   return (
-    <div className="">
-      <h2 className="text-2xl font-semibold text-gray-700 mb-4">{selected ? 'Edit' : 'Add'} Employee</h2>
+    <div>
+      <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+        {selected ? t('employee.edit') : t('employee.add')}
+      </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap gap-4 mb-6">
 
         <div className="flex flex-col flex-grow">
           <input
-            {...register('employeeName', { required: 'Employee name is required' })}
-            placeholder="Employee Name"
+            {...register('employeeName', { required: t('employee.nameRequired') })}
+            placeholder={t('employee.name')}
             className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.employeeName && (
@@ -57,11 +61,11 @@ const EmployeeForm = ({ selected, onSaved }) => {
         <div className="flex flex-col flex-grow">
           <input
             {...register('salary', {
-              required: 'Salary is required',
+              required: t('employee.salaryRequired'),
               valueAsNumber: true,
-              validate: value => value > 0 || 'Salary must be a positive number'
+              validate: value => value > 0 || t('employee.salaryPositive')
             })}
-            placeholder="Salary"
+            placeholder={t('employee.salary')}
             type="number"
             step="0.01"
             className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -76,7 +80,7 @@ const EmployeeForm = ({ selected, onSaved }) => {
             {...register('departmentID', { required: true })}
             className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="">Select Department</option>
+            <option value="">{t('employee.selectDepartment')}</option>
             {departments.map(d => (
               <option key={d.departmentID} value={d.departmentID}>
                 {d.departmentName}
@@ -84,7 +88,7 @@ const EmployeeForm = ({ selected, onSaved }) => {
             ))}
           </select>
           {errors.departmentID && (
-            <p className="text-red-500 text-sm mt-1 text-left">Department is required</p>
+            <p className="text-red-500 text-sm mt-1 text-left">{t('employee.departmentRequired')}</p>
           )}
         </div>
 
@@ -93,7 +97,7 @@ const EmployeeForm = ({ selected, onSaved }) => {
             type="submit"
             className="px-4 py-2 bg-blue-600 text-white rounded h-fit"
           >
-            {selected ? 'Update' : 'Create'}
+            {selected ? t('employee.update') : t('employee.create')}
           </button>
         </div>
 

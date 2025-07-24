@@ -1,0 +1,44 @@
+{
+    "login": {
+        "title": "Sign in to your account",
+        "username": "User Name",
+        "password": "Password",
+        "usernamePlaceholder": "Username",
+        "passwordPlaceholder": "Password",
+        "button": "Sign In",
+        "invalidLogin": "Invalid login"
+    },
+    "employee": {
+        "name": "Employee Name",
+        "salary": "Salary",
+        "department": "Department",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "loadFail": "Failed to load employees",
+        "deleteSuccess": "Employee deleted successfully!",
+        "add": "Add Employee",
+        "nameRequired": "Employee name is required",
+        "salaryRequired": "Salary is required",
+        "salaryPositive": "Salary must be a positive number",
+        "selectDepartment": "Select Department",
+        "departmentRequired": "Department is required",
+        "create": "Create",
+        "update": "Update",
+        "created": "Employee added successfully!",
+        "updated": "Employee updated successfully!",
+
+        "addDepartment": "Add Department",
+        "editDepartment": "Edit Department",
+        "departmentName": "Department Name",
+        "departmentDeleteError": "Cannot delete department. It may be in use.",
+        "deleteDepartmentSuccess": "Department deleted successfully!"
+    },
+    "nav": {
+        "invoices": "Invoices",
+        "books": "Books",
+        "departments": "Departments",
+        "employees": "Employees",
+        "logout": "Logout"
+    }
+}

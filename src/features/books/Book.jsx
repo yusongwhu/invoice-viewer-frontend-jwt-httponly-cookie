@@ -1,7 +1,7 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchBooks, addBook, deleteBook } from '../../src/features/books/booksSlice';
+import { fetchBooks, addBook, deleteBook } from './booksSlice';
 
 function Book() {
   const { items: books, loading, error } = useSelector(state => state.books);

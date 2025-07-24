@@ -5,6 +5,7 @@ import App from './App.jsx'
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './app/store';
+import './i18n'; // 👈 initialize translations
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

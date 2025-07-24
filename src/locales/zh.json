@@ -1,0 +1,44 @@
+{
+    "login": {
+        "title": "登录您的账户",
+        "username": "用户名",
+        "password": "密码",
+        "usernamePlaceholder": "用户名",
+        "passwordPlaceholder": "密码",
+        "button": "登录",
+        "invalidLogin": "登录无效"
+    },
+    "employee": {
+        "name": "员工姓名",
+        "salary": "薪水",
+        "department": "部门",
+        "actions": "操作",
+        "edit": "编辑",
+        "delete": "删除",
+        "loadFail": "加载员工失败",
+        "deleteSuccess": "员工已成功删除！",
+        "add": "添加员工",
+        "nameRequired": "员工姓名为必填项",
+        "salaryRequired": "薪资为必填项",
+        "salaryPositive": "薪资必须是正数",
+        "selectDepartment": "请选择部门",
+        "departmentRequired": "部门为必选项",
+        "create": "创建",
+        "update": "更新",
+        "created": "员工添加成功！",
+        "updated": "员工更新成功！",
+
+        "addDepartment": "添加部门",
+        "editDepartment": "编辑部门",
+        "departmentName": "部门名称",
+        "departmentDeleteError": "无法删除部门。可能正在使用中。",
+        "deleteDepartmentSuccess": "部门已成功删除！"
+    },
+    "nav": {
+        "invoices": "发票",
+        "books": "图书",
+        "departments": "部门",
+        "employees": "员工",
+        "logout": "退出"
+    }
+}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import API from '../api';
+import API from '../../api';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { increment, decrement, incrementByAmount } from '../../src/features/counter/counterSlice';
+import { increment, decrement, incrementByAmount } from './counterSlice';
 
 const InvoiceList = () => {
     const [invoices, setInvoices] = useState([]);
