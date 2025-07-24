@@ -38,6 +38,12 @@ const Navbar = () => {
                                 <NavLink to='/book' className={linkClass}>
                                     Books
                                 </NavLink>
+                                <NavLink to='/Department' className={linkClass}>
+                                    Departments
+                                </NavLink>
+                                <NavLink to='/Employees' className={linkClass}>
+                                    Employees
+                                </NavLink>
                                 <button
                                     className="bg-gray-800 border-indigo-500 text-white font-bold hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
                                     onClick={handleLogout}

@@ -9,6 +9,8 @@ import InvoiceList from './components/InvoiceList'
 import Dashboard from './components/Dashboard'
 import MainLayout from './layouts/MainLayout'
 import Book from './components/Book'
+import DepartmentTable from './components/DepartmentTable';
+import EmployeeList from './features/employees/EmployeeList';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Invoice" element={<InvoiceList />} />
           <Route path="/Book" element={<Book />} />
+          <Route path="/Department" element={<DepartmentTable />} />
+          <Route path="/Employees" element={<EmployeeList  />} />
         </Route>
       </Routes>
     </BrowserRouter>
