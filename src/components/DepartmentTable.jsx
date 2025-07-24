@@ -88,7 +88,7 @@ const DepartmentTable = () => {
         )}
       </form>
 
-      <table className="w-full text-sm text-left border">
+      <table className="w-full text-sm text-left border border-gray-300">
         <thead className="bg-gray-100 text-gray-700">
           <tr>
             <th className="py-2 px-4 ">ID</th>
@@ -98,7 +98,7 @@ const DepartmentTable = () => {
         </thead>
         <tbody>
           {departments.map((dept) => (
-            <tr key={dept.departmentID} className="hover:bg-gray-50 border-t">
+            <tr key={dept.departmentID} className="hover:bg-gray-50 border-t border-gray-300">
               <td className="py-2 px-4 ">{dept.departmentID}</td>
               <td className="py-2 px-4 ">{dept.departmentName}</td>
               <td className="py-2 px-4  space-x-2">

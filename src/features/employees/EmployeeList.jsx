@@ -30,11 +30,11 @@ const EmployeeList = () => {
     <div className="mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
       <EmployeeForm selected={selected} onSaved={load} />
       <div className="overflow-x-auto">
-        <table className="w-full text-sm text-left border">
+        <table className="w-full text-sm text-left border border-gray-300">
           <thead className="bg-gray-100 text-gray-700">
             <tr>
-              <th className="p-2">ID</th>
-              <th className="p-2">Name</th>
+
+              <th className="p-2">Employee Name</th>
               <th className="p-2">Salary</th>
               <th className="p-2">Department</th>
               <th className="p-2">Actions</th>
@@ -42,8 +42,8 @@ const EmployeeList = () => {
           </thead>
           <tbody>
             {employees.map(emp => (
-              <tr key={emp.id} className="border-t">
-                <td className="p-2">{emp.id}</td>
+              <tr key={emp.id} className="border-t border-gray-300">
+
                 <td className="p-2">{emp.employeeName}</td>
                 <td className="p-2">${emp.salary}</td>
                 <td className="p-2">{emp.departmentName}</td>
