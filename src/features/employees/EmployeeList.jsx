@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import API from '../../api';
 import EmployeeForm from './EmployeeForm';
+import { toast } from 'react-toastify';
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
@@ -18,6 +19,7 @@ const EmployeeList = () => {
   const handleDelete = async (id) => {
     await API.delete(`/Employees/${id}`);
     load();
+    toast.success('Employee deleted successfully!');
   };
 
   useEffect(() => {
@@ -25,11 +27,11 @@ const EmployeeList = () => {
   }, []);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
       <EmployeeForm selected={selected} onSaved={load} />
       <div className="overflow-x-auto">
-        <table className="table-auto w-full text-left border">
-          <thead className="bg-gray-100">
+        <table className="w-full text-sm text-left border">
+          <thead className="bg-gray-100 text-gray-700">
             <tr>
               <th className="p-2">ID</th>
               <th className="p-2">Name</th>

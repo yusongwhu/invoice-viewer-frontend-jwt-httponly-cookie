@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import API from "../api"; // adjust the path if needed
+import { toast } from 'react-toastify';
 
 const DepartmentTable = () => {
   const { register, handleSubmit, reset, setValue } = useForm();
@@ -28,8 +29,10 @@ const DepartmentTable = () => {
           departmentName: data.departmentName,
         });
         setEditingId(null);
+        toast.success('Department updated successfully!');
       } else {
         await API.post("/departments", data);
+        toast.success('Department added successfully!');
       }
       reset();
       fetchDepartments();
@@ -55,7 +58,7 @@ const DepartmentTable = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+    <div className="mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold text-gray-700 mb-4">
         {editingId ? "Edit Department" : "Add Department"}
       </h2>
@@ -88,17 +91,17 @@ const DepartmentTable = () => {
       <table className="w-full text-sm text-left border">
         <thead className="bg-gray-100 text-gray-700">
           <tr>
-            <th className="py-2 px-4 border">ID</th>
-            <th className="py-2 px-4 border">Department Name</th>
-            <th className="py-2 px-4 border">Actions</th>
+            <th className="py-2 px-4 ">ID</th>
+            <th className="py-2 px-4 ">Department Name</th>
+            <th className="py-2 px-4 ">Actions</th>
           </tr>
         </thead>
         <tbody>
           {departments.map((dept) => (
-            <tr key={dept.departmentID} className="hover:bg-gray-50">
-              <td className="py-2 px-4 border">{dept.departmentID}</td>
-              <td className="py-2 px-4 border">{dept.departmentName}</td>
-              <td className="py-2 px-4 border space-x-2">
+            <tr key={dept.departmentID} className="hover:bg-gray-50 border-t">
+              <td className="py-2 px-4 ">{dept.departmentID}</td>
+              <td className="py-2 px-4 ">{dept.departmentName}</td>
+              <td className="py-2 px-4  space-x-2">
                 <button
                   onClick={() => handleEdit(dept)}
                   className="text-blue-600 hover:underline"
