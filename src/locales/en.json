@@ -25,6 +25,7 @@
         "departmentRequired": "Department is required",
         "create": "Create",
         "update": "Update",
+        "cancel": "Cancel",
         "created": "Employee added successfully!",
         "updated": "Employee updated successfully!",
 

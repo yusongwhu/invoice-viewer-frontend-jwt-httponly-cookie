@@ -25,6 +25,7 @@
         "departmentRequired": "部门为必选项",
         "create": "创建",
         "update": "更新",
+        "cancel": "取消",
         "created": "员工添加成功！",
         "updated": "员工更新成功！",
 

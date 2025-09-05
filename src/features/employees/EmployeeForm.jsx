@@ -7,12 +7,19 @@ import { useTranslation } from 'react-i18next';
 
 const EmployeeForm = ({ selected, onSaved }) => {
   const { t } = useTranslation();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      employeeName: '',
+      salary: '',
+      departmentID: ''
+    }
+  });
 
   const departments = useDepartments();
 
@@ -100,7 +107,22 @@ const EmployeeForm = ({ selected, onSaved }) => {
             {selected ? t('employee.update') : t('employee.create')}
           </button>
         </div>
+        {selected && (
+          <div className="flex flex-col flex-grow">
 
+            <button
+              type="button"
+              className="px-4 py-2 bg-blue-600 text-white rounded h-fit"
+              onClick={() => {
+                reset({ employeeName: '', salary: '', departmentID: '' });
+                onSaved(null);
+              }}
+            >
+              {t('employee.cancel')}
+            </button>
+
+          </div>
+        )}
       </form>
     </div>
   );

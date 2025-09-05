@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5229/api', // your .NET backend URL
+  baseURL: 'https://aspnetcorewebapi-container-app.agreeablepond-e5c66174.canadaeast.azurecontainerapps.io/api', // your .NET backend URL
   withCredentials: true
 });
 

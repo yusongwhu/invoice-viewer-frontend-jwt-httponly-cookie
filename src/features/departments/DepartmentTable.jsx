@@ -81,13 +81,13 @@ const DepartmentTable = () => {
         {editingId && (
           <button
             type="button"
-            className="text-gray-500 underline"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             onClick={() => {
               reset();
               setEditingId(null);
             }}
           >
-            Cancel
+            {t('employee.cancel')}
           </button>
         )}
       </form>

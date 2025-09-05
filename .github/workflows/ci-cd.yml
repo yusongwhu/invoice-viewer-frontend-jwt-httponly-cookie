@@ -1,0 +1,78 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  NODE_VERSION: 20
+  CONTAINER_APP_NAME: invoice-viewer-frontend-container-app
+  CONTAINER_APP_ENVIRONMENT_NAME: managedEnv20250904120000
+  RESOURCE_GROUP: managedEnv20250904120000ResourceGroup
+  CONTAINER_REGISTRY_NAME: registry20250904121000
+  CONTAINER_REGISTRY_LOGIN_SERVER: registry20250904121000.azurecr.io
+
+jobs:
+  BuildAndDeployContainerApp:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # 3. Azure login
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 5. Run tests
+      - name: Run tests
+        run: npm test -- --watchAll=false
+
+      # 6. Build frontend
+      - name: Build frontend
+        run: npm run build
+
+      # 7. Build and Deploy Container App
+      - name: Build and Deploy Container App
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}
+          acrName: ${{ env.CONTAINER_REGISTRY_NAME }}
+          acrUsername: ${{ secrets.registry20250904121000_USERNAME }}
+          acrPassword: ${{ secrets.registry20250904121000_PASSWORD }}
+          dockerfilePath: ./Dockerfile.prod      # 👈 Dockerfile for frontend
+          buildArguments: |
+            NODE_ENV=production                  # 👈 set production env
+
+          imageToBuild: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
+          containerAppName: ${{ env.CONTAINER_APP_NAME }}
+          containerAppEnvironment: ${{ env.CONTAINER_APP_ENVIRONMENT_NAME }}
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+
+      # 8. (Optional) Set any frontend secrets
+      - name: Set frontend environment variables on ACA
+        run: |
+          az containerapp secret set \
+            --name "${{ env.CONTAINER_APP_NAME }}" \
+            --resource-group "${{ env.RESOURCE_GROUP }}" \
+            --secrets REACT_APP_API_URL='${{ secrets.REACT_APP_API_URL }}'
+
+      - name: Point env var to secret (new revision)
+        run: |
+          az containerapp update \
+            --name "${{ env.CONTAINER_APP_NAME }}" \
+            --resource-group "${{ env.RESOURCE_GROUP }}" \
+            --set-env-vars REACT_APP_API_URL=secretref:REACT_APP_API_URL
