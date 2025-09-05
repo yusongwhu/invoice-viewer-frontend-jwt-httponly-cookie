@@ -36,3 +36,4 @@ jobs:
           action: "upload"
           app_location: "/"         # location of package.json
           output_location: "build"  # React build output folder
+          
